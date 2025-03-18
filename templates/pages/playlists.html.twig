@@ -1,6 +1,7 @@
 {% extends "basefront.html.twig" %}
 {% block body %}
     <table class="table table-striped">
+        <caption>Liste des formations</caption>
         <thead>
             <tr>
                 <th class="text-left align-top" scope="col">
@@ -34,7 +35,7 @@
                 </th>
                 <th class="text-center align-top" scope="col">
                     &nbsp;
-                </th>				
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -54,12 +55,12 @@
                                     &nbsp;{{ categories[c] }}                                  
                                 {% endfor %}
                             {% endif %}
-                        </td>            					
+                        </td>
                         <td class="text-center">
                             <a href="{{ path('playlists.showone', {id:playlists[k].id}) }}" class="btn btn-secondary">Voir détail</a>
-                        </td> 					
+                        </td>
                     </tr>
-                {% endfor %}	
+                {% endfor %}
             {% endif %}
         </tbody>
     </table>
