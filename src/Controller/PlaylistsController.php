@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @author emds
  */
+#[Route('')]
 class PlaylistsController extends AbstractController
 {
     
@@ -47,34 +48,50 @@ class PlaylistsController extends AbstractController
         $this->formationRepository = $formationRespository;
     }
     
-    /**
-     * @Route("/playlists", name="playlists")
-     * @return Response
-     */
-    #[Route('/playlists', name: 'playlists')]
-    public function index(): Response
+    
+    #[Route('/playlists/{sort}', name:'playlists')]
+    public function index(
+            PlaylistRepository $playlistRepository, 
+            CategorieRepository $categoryRepository, 
+            string $sort):Response
     {
-        $playlists = $this->playlistRepository->findAllOrderByName('ASC');
-        $categories = $this->categorieRepository->findAll();
-        return $this->render(self::TEMPLATE_PLAYLISTS, [
+        $order = 'ASC';
+        
+        if ($sort === 'formations_asc') {
+            $playlists = $playlistRepository->findAllSortedByFormations('ASC');
+        } elseif ($sort === 'formations_desc') {
+            $playlists = $playlistRepository->findAllSortedByFormations('DESC');
+        } else {
+            $playlists = $playlistRepository->findBy([], [$sort => $order]);
+        }
+        
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('pages/playlists.html.twig', [
             'playlists' => $playlists,
             'categories' => $categories
         ]);
     }
 
-    #[Route('/playlists/tri/{champ}/{ordre}', name: 'playlists.sort')]
+    #[Route('/tri/{champ}/{ordre}', name: 'playlists.sort')]
     public function sort($champ, $ordre): Response
     {
+        $playlists = [];
+
         if ($champ === "name") {
             $playlists = $this->playlistRepository->findAllOrderByName($ordre);
+        } elseif ($champ === "formations") {
+            $playlists = $this->playlistRepository->findAllSortedByFormations($ordre);
         }
 
         $categories = $this->categorieRepository->findAll();
+
         return $this->render(self::TEMPLATE_PLAYLISTS, [
             'playlists' => $playlists,
             'categories' => $categories
         ]);
     }
+
 
     #[Route('/playlists/recherche/{champ}/{table}', name: 'playlists.findallcontain')]
     public function findAllContain($champ, Request $request, $table=""): Response

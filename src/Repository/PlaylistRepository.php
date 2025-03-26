@@ -79,4 +79,14 @@ class PlaylistRepository extends ServiceEntityRepository
         }
     }
     
+    public function findAllSortedByFormations(string $order = 'ASC')
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.formations', 'f')
+            ->groupBy('p.id')
+            ->orderBy('COUNT(f.id)', $order)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

@@ -1,7 +1,6 @@
 {% extends "base.html.twig" %}
-
 {% block title %}{% endblock %}
-{% block stylesheets %}{% endblock %}
+{% block stylesheets %}{{ parent() }}{% endblock %}
 {% block top %}
     <div class="container">
         <!-- titre -->
@@ -19,7 +18,7 @@
                         <a class="nav-link" href="{{ path('formations') }}">Formations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('playlists') }}">Playlists</a>
+                        <a class="nav-link" href="{{ path('playlists', {sort: 'name'}) }}">Playlists</a>
                     </li>                    
                 </ul>
             </div>

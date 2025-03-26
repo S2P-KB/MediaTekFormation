@@ -1,6 +1,8 @@
 <?php
 
+
 namespace App\Entity;
+
 
 use App\Repository\PlaylistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -105,6 +107,11 @@ class Playlist
             }
         }
         return $categories;
+    }
+    
+    public function getNbFormations(): int
+    {
+        return count($this->formations);
     }
         
 }
