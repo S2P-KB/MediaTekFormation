@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/S:/wampserver/www/mediatekformation/tests/bootstrap.php</file>
+            <file>file:/S:/wampserver/www/mediatekformation/src/Controller/FormationsController.php</file>
+            <file>file:/S:/wampserver/www/mediatekformation/templates/pages/formations.html.twig</file>
+            <file>file:/S:/wampserver/www/mediatekformation/src/Form/FormationType.php</file>
+            <file>file:/S:/wampserver/www/mediatekformation/templates/pages/formulaire.html.twig</file>
+            <file>file:/S:/wampserver/www/mediatekformation/composer.json</file>
+            <file>file:/S:/wampserver/www/mediatekformation/src/Entity/Formation.php</file>
         </group>
     </open-files>
 </project-private>
