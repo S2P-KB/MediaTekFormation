@@ -30,4 +30,10 @@
                 {{ formation.description|nl2br }}
         </div>
     </div>
+    <div class="mt-4">
+    <a href="{{ path('formations.edit', { 'id': formation.id }) }}" class="btn btn-warning">
+        Modifier la formation
+    </a>
+</div>
+
 {% endblock %}

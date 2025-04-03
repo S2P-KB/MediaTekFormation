@@ -1,5 +1,6 @@
 {% extends "basefront.html.twig" %}
 {% block body %}
+    <a href="{{ path('formations.create') }}" class="btn btn-success mb-3">Créer une formation</a>
     <table class="table table-striped">
         <caption>Liste des formations</caption>
         <thead>
@@ -56,7 +57,7 @@
                 </th>
             </tr>
         </thead>
-        <tbody>
+        
             {% for formation in formations %}
                 <tr class="align-middle">
                     <td>
@@ -73,7 +74,14 @@
                         {% endfor %}
                     </td>                    
                     <td class="text-center">
-                        {{ formation.publishedatstring }}
+                        {% if formation.miniature %}
+                            <a href="{{ path('formations.showone', {id:formation.id}) }}">
+                                <img src="{{ formation.miniature }}" alt="Image de miniature.">
+                            </a>
+                        {% endif %}
+                        <form action="{{ path('formations.delete', { 'id': formation.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette formation ?');">
+                            <button type="submit" class="btn btn-danger btn-sm mt-2">Supprimer</button>
+                        </form>
                     </td>
                     <td class="text-center">
                         {% if formation.miniature %}
@@ -84,6 +92,6 @@
                     </td>
                 </tr>
             {% endfor %}
-        </tbody>
+        
     </table>
 {% endblock %}
