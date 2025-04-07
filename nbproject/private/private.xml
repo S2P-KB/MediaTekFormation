@@ -2,12 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/S:/wampserver/www/mediatekformation/src/Controller/FormationsController.php</file>
-            <file>file:/S:/wampserver/www/mediatekformation/templates/pages/formations.html.twig</file>
-            <file>file:/S:/wampserver/www/mediatekformation/src/Form/FormationType.php</file>
-            <file>file:/S:/wampserver/www/mediatekformation/templates/pages/formulaire.html.twig</file>
-            <file>file:/S:/wampserver/www/mediatekformation/templates/pages/formation.html.twig</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

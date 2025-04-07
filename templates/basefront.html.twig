@@ -33,9 +33,55 @@
             <hr>
             <p><small><em>
                 Consultez nos <a class="link-secondary" href="{{ path('cgu') }}">Conditions Générales d'Utilisation</a>
-            </i></small></p>
-            
+            </em></small></p>
+
+            {# Bannière de consentement #}
+            <div id="cookie-consent-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background-color: #f8f9fa; border-top: 1px solid #dee2e6; padding: 15px; text-align: center; z-index: 9999; display: none;">
+                <p style="margin-bottom: 10px;">
+                    🔍 Ce site utilise Google Analytics afin de mesurer l’audience et améliorer l’expérience utilisateur. Aucune autre donnée personnelle n’est collectée.
+                    En cliquant sur <strong>"Accepter"</strong>, vous autorisez l’analyse anonyme de votre navigation.
+                    En cliquant sur <strong>"Refuser"</strong>, vous serez redirigé hors du site.
+                    Consultez nos <a href="http://localhost/mediatekformation/public/index.php/cgu">Conditions Générales d’Utilisation</a>.
+                </p>
+                <button onclick="acceptCookies()" class="btn btn-success btn-sm">Accepter</button>
+                <button onclick="refuseCookies()" class="btn btn-danger btn-sm">Refuser</button>
+            </div>
         </footer>
     </div>
 {% endblock %}
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+<script>
+    window.onload = function() {
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-consent-banner').style.display = 'block';
+        } else if (localStorage.getItem('cookieConsent') === 'accepted') {
+            loadGoogleAnalytics();
+        }
+    };
+
+    function acceptCookies() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        document.getElementById('cookie-consent-banner').style.display = 'none';
+        loadGoogleAnalytics();
+    }
+
+    function refuseCookies() {
+        localStorage.setItem('cookieConsent', 'refused');
+        window.location.href = 'https://www.google.com';
+    }
+
+    function loadGoogleAnalytics() {
+        let script = document.createElement('script');
+        script.setAttribute('async', '');
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-1234567";
+        document.head.appendChild(script);
+
+        script.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){ dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-1234567');
+        };
+    }
+</script>
+{% endblock %}
